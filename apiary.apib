@@ -16,7 +16,7 @@ Permite generar un certificado digital para una persona, retornando posteriormen
 
 + Request (application/json)
 
-+ Response 200 (application/json)
++ Response 201 (application/json)
     + Attributes (Certificate)
 
 # Data Structures
@@ -25,7 +25,7 @@ Permite generar un certificado digital para una persona, retornando posteriormen
 + x509: "Base64" (string) - Certificate's pem in Base64 format
 
 ## User (object)
-+ commonName (string) - User's common name 
-+ dni (string) - User's unique identifier
-+ cargo (string) - User's position
-+ email (string) - User's email address    
++ commonName (string,required) - User's common name 
++ dni (string,required) - User's unique identifier
++ cargo (string,required) - User's position
++ email (string,required) - User's email address    
