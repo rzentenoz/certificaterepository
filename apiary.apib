@@ -5,19 +5,18 @@ HOST: https://repository.agilesigner.com:8443/Agile27
 
 API para banco de Firmas y generación de Certificados.
 
-## Generar Certificado [/genCertificate]
+## Solicitud de Certificado [/genCertificate]
 Permite generar un certificado digital para una persona, retornando posteriormente un Base64 del X509
 
 ### Generar Solicitud de Certificado [POST]
 
++ Attributes (User)
+    + certificateType (string, required) - Certificate type
+
 + Request (application/json)
 
-        + Attributes (User)
-            + certificateType (string, required) - Certificate type
-
 + Response 200 (application/json)
-
-        + Attributes (Certificate)
+    + Attributes (Certificate)
 
 # Data Structures
 
