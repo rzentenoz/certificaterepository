@@ -12,95 +12,20 @@ Permite generar un certificado digital para una persona, retornando posteriormen
 
 + Request (application/json)
 
-        {
-            "commonName": "Nombre Usuario Completo",
-            "dni": "123123123",
-            "cargo": "cargo usuario",
-            "email": "email@dominio.cl"
-        }
+        + Attributes (User)
+            + certificateType (string, required) - Certificate type
 
 + Response 200 (application/json)
 
-        {
-            "x509": "Base64"
-        }
- 
-- Response 403
-        
-- Response 500
-    
+        + Attributes (Certificate)
 
-## Questions Collection [/questions]
+# Data Structures
 
+## Certificate (object)
++ x509: "Base64" (string) - Certificate's pem in Base64 format
 
-### List All Questions [GET]
-
-+ Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
-
-+ Request (application/json)
-
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
-
-+ Response 201 (application/json)
-
-    + Headers
-
-            Location: /questions/2
-
-    + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+## User (object)
++ commonName (String) - User's common name 
++ dni (string) - User's unique identifier
++ cargo (string) - User's position
++ email (string) - User's email address    
