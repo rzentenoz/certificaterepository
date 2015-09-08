@@ -28,12 +28,12 @@ Permite generar un certificado digital para una persona, retornando posteriormen
 
 ## User (object)
 + commonName (string) - User's common name 
-+ dni (string) - User's unique identifier
++ dni (string, required) - User's unique identifier
 + cargo (string) - User's position
 + organismo (string) - User's organism
-+ email (string) - User's email address    
++ email (string, required) - User's email address    
 
 ## CAinfo (object)
-+ name (string) - CA name
-+ entityProfile (string) - Entity Profile
-+ certificateProfile (string) - Certificate Profile
++ name (string, required) - CA name
++ entityProfile (string, required) - Entity Profile
++ certificateProfile (string, required) - Certificate Profile
