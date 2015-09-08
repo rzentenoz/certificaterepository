@@ -12,7 +12,9 @@ Permite generar un certificado digital para una persona, retornando posteriormen
 
 + Attributes (object)
     + Include User
+    + Include CAinfo
     + certificateType (string, required) - Certificate type
+    
 
 + Request (application/json)
 
@@ -30,3 +32,8 @@ Permite generar un certificado digital para una persona, retornando posteriormen
 + cargo (string) - User's position
 + organismo (string) - User's organism
 + email (string) - User's email address    
+
+## CAinfo (object)
++ name (string) - CA name
++ entityProfile (string) - Entity Profile
++ certificateProfile (string) - Certificate Profile
