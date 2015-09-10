@@ -14,7 +14,8 @@ Permite generar un certificado digital para una persona, retornando posteriormen
     + Include User
     + Include CAinfo
     + certificateType (string, required) - Certificate type
-    + expirationYears (string, required) - Certificate's expiration time in years
+    + expirationYears (string, required) - Certificate's expiration in ISO 8601 format
+    + purpose (string) - Certificate's purpose
     
 
 + Request (application/json)
@@ -29,7 +30,7 @@ Permite generar un certificado digital para una persona, retornando posteriormen
 
 ## User (object)
 + commonName (string, required) - User's common name 
-+ dni (string, required) - User's unique identifier
++ dni (string, required) - User's unique identifier (xxx-x)
 + cargo (string) - User's position
 + organismo (string) - User's organism
 + email (string, required) - User's email address    
