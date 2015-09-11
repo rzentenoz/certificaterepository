@@ -23,6 +23,15 @@ Permite generar un certificado digital para una persona, retornando posteriormen
 + Response 201 (application/json; charset=UTF-8)
     + Attributes (Certificate)
 
+## Habilitación de Certificados [/confirmCertificate]
+Los certificados una vez validados por el ministro de fé, deben ser confirmados ante el banco de certificados para habilitar el uso de los mismos
+
+### Habilitar Certificado [POST]
+
++ Attributes (object)
+	+ sn (string, required) - Certificate Serial Number
+	+ hash (string, required) - XML confirmation Hash
+
 # Data Structures
 
 ## Certificate (object)
@@ -33,6 +42,7 @@ Permite generar un certificado digital para una persona, retornando posteriormen
 + dni (string, required) - User's unique identifier (xxx-x)
 + cargo (string) - User's position
 + organismo (string) - User's organism
++ entidad (string) - User's organism unit
 + email (string, required) - User's email address    
 
 ## CAinfo (object)
