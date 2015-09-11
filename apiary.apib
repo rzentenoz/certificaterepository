@@ -19,6 +19,20 @@ Permite generar un certificado digital para una persona, retornando posteriormen
     
 
 + Request (application/json; charset=UTF-8)
+	{    
+	    "commonName": "JOHN DOE",
+	    "dni": "11111111-1",	    
+	    "cargo": "NADA",
+	    "organismo": "NADA",
+	    "entidad" : "NADA",
+	    "email": "example@agile.cl",
+	    "name": "TESTX",
+	    "entityProfile": "test",
+	    "certificateProfile": "SAI",
+	    "certificateType": "3",	    
+	    "expirationYears": "2016-01-15 13:13:13+00:00",    
+	    "purpose": "Samples"
+	}
 
 + Response 201 (application/json; charset=UTF-8)
     + Attributes (Certificate)
@@ -33,7 +47,7 @@ Los certificados una vez validados por el ministro de fé, deben ser confirmados
     + sn (string, required) - Certificate Serial Number
     + hash (string, required) - XML confirmation Hash
 
-+ Request (application/json; charset=UTF-8)
++ Request (application/json; charset=UTF-8)	
 
 + Response 200
     
