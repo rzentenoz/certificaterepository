@@ -46,13 +46,29 @@ Los certificados una vez validados por el ministro de fé, deben ser confirmados
 ### Habilitar Certificado [POST]
 
 + Attributes (object)
-    + fp (string, required) - Certificate Fingerprint
-    + hash (string, required) - XML confirmation Hash
+    + dni (string, required) - Certificate holder's unique identifier
+    + fp (string, required) - Certificate's Fingerprint
+    + hash (string, optional) - XML confirmation Hash is optional in attestor certificate
 
 + Request (application/json; charset=UTF-8)
 
 + Response 200
-    
+
+## Solicitud de OTP [/getOTPSecret]
+Para poder firmar con sus certificados (de tipo OTP) los ususarios deben obtener su secreto de "one time password" para 
+
+### Solicitar OTP [GET]    
+
++ Attributes (object)
+    + dni (string, required) - User's unique identifier (xxx-x)
+    + fp (string, required) - Certificate's Fingerprint
+    + appId (string, required) - Application's unique identifier (claimant)
+
++ Request (application/json; charset=UTF-8)
+
++ Response 200
+    + Attributes (object)
+        + secret (string) - Certificate's OTP secret
 
 # Data Structures
 
