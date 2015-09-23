@@ -77,6 +77,18 @@ Para poder firmar con sus certificados (de tipo OTP) los ususarios deben obtener
 + Response 200
     + Attributes (object)
         + secret (string) - Certificate's OTP secret
+        
++ Response 404
+    
+        El certificado no existe o no corresponde al usuario o a la aplicación 
+
++ Response 409
+
+        El certificado no es de tipo OTP
+
++ Response 500
+
+        Error interno del Servidor
 
 # Data Structures
 
