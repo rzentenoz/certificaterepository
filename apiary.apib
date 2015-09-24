@@ -40,6 +40,13 @@ Permite generar un certificado digital para una persona, retornando posteriormen
     + Attributes (Certificate)
     
 
+ + Body
+ 
+            {
+                "x509":"-----BEGIN CERTIFICATE-----\nMIIDLDCCAhSgAwIBAgIIPzN4Ka6UY8EwDQYJKoZIhvcNAQEFBQAwEDEOMAwGA1UEAwwFVEVTVFgwHhcNMTUwODEyMTYwMTQ4WhcNMjUwODEyMTYwMTQ4WjAQMQ4wDAYDVQQDDAVURVNUWDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAI/0EtPDUNbyWOhzRjIMY6dfO1wc8N+qZDQldeGF22J/NKCw7uAk/5gtBbXWJ74z0iJ8B0ZDK8R+WwsM59fYjSsfJ4alkIy4AEJweslPn4Qh01v7Y/9q/nbKzP087zarah5bV2TVUoSAxJo/TpOVQrSZLeW6NGXhFOo1BAmVxMNqpYatpguqb+kg+wcvHkY+koau5iu6kfNeo/er9lRSlDhN4mmsdrqplq2uc1+rGARAucix1whkwoiMbvoIrG6YRH1Qp3qvQgrk8i5NrZgpV2BuUuto3MgVOYsxH3YVSthoAsLN2E7IMdPJAM1sXAjCl6+oqLpUbrwXjNQCxFMz2EkCAwEAAaOBiTCBhjAdBgNVHQ4EFgQUn/gywKWCwbbiIRLFlEzj2X5bS04wDwYDVR0TAQH/BAUwAwEB/zAfBgNVHSMEGDAWgBSf+DLApYLBtuIhEsWUTOPZfltLTjAOBgNVHQ8BAf8EBAMCAYYwIwYDVR0RBBwwGqAYBggrBgEEAcEBAqAMDApSVVQgSVNTVUVSMA0GCSqGSIb3DQEBBQUAA4IBAQBDz7K4ABJEGWgm05owf3U604SlMx1Mk3GnwU1Kq3uki4HOtNVEfbF0nmJdGKNZS8HtijZcgSNAcwCEVht1ddfWRRuatQ5+1GM1up6e/POikBihbjYugNV76i7eVIgW2kuz0ecHf3vJWlmpxxUNAbfxBXsQMpBxMmp8jSOvIMKELFmVtPI18o3hBiKkalXch5zNis/vNvJn4jCyUUVokN+EiBpwyXLrhKrcfFkfdZWrOf2qw5gx5dhHuO43I0Bv2fQjDhv0KKEJ/sOShYUlMKPxTO7EY7tUvagQhF7atchj71qwUiXEYFRPNa+no7rOiBnYe+pRzx5WZlj4iGdbJvb1\n-----END CERTIFICATE-----"
+            }
+    
+
 ## Habilitación de Certificados [/confirmCertificate]
 Los certificados una vez validados por el ministro de fé, deben ser confirmados ante el banco de certificados para habilitar el uso de los mismos
 
@@ -93,7 +100,7 @@ Para poder firmar con sus certificados (de tipo OTP) los ususarios deben obtener
 # Data Structures
 
 ## Certificate (object)
-+ x509: "Base64" (string) - Certificate's pem in Base64 format
++ x509 (string) - Certificate's pem in Base64 format
 
 ## User (object)
 + commonName (string, required) - User's common name 
