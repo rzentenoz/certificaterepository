@@ -5,7 +5,7 @@ HOST: https://repository.agilesigner.com:8443/Agile27
 
 API para banco de Firmas y generación de Certificados.
 
-## Solicitud de Certificado [/genCertificate]
+## Solicitud de Certificado [/certificate]
 Permite generar un certificado digital para una persona, retornando posteriormente un Base64 del X509
 
 ### Generar Solicitud de Certificado [POST]
@@ -96,6 +96,27 @@ Para poder firmar con sus certificados (de tipo OTP) los ususarios deben obtener
 + Response 500
 
         Error interno del Servidor
+        
+## Revocación de Certificado [/certificate/{fp}]
+Revoca un certificado, eliminando sus claves privadas y lo deja sin uso en el sistema.
+
++ Parameters
+    + fp:"1a6378b3c8fa1e" (string, required) - Certificate's finger print
+
+### Revocar Certificado [DELETE]
+
++ Attributes (object)
+    + dni (string, required) - User's unique identifier (xxx-x)
+    + reason (number, required) - Revocation reason code
+    
++ Request
+    
+        {
+            "dni" : "11111111-1",
+            "reason" : 1
+        }
+
++ Response 204
 
 # Data Structures
 
