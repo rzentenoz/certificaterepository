@@ -5,7 +5,7 @@ HOST: https://repository.agilesigner.com:8443/Agile27
 
 API para banco de Firmas y generación de Certificados.
 
-## Solicitud de Certificado [/certificate]
+## Solicitud de Certificado [/certificates]
 Permite generar un certificado digital para una persona, retornando posteriormente un Base64 del X509
 
 ### Generar Solicitud de Certificado [POST]
@@ -47,14 +47,15 @@ Permite generar un certificado digital para una persona, retornando posteriormen
             }
     
 
-## Habilitación de Certificados [/confirmCertificate]
+## Habilitación de Certificados [/certificates/{fp}/confirm]
 Los certificados una vez validados por el ministro de fé, deben ser confirmados ante el banco de certificados para habilitar el uso de los mismos
 
-### Habilitar Certificado [POST]
++ Parameters
+    + fp:1 (number,required) - Identificador único del certificado
+    
+### Habilitar Certificado [PATCH]
 
 + Attributes (object)
-    + dni (string, required) - Certificate holder's unique identifier
-    + fp (string, required) - Certificate's Fingerprint
     + hash (string, optional) - XML confirmation Hash is optional in attestor certificate
 
 + Request (application/json; charset=UTF-8)
@@ -69,15 +70,15 @@ Los certificados una vez validados por el ministro de fé, deben ser confirmados
 
 
 
-## Solicitud de OTP [/getOTPSecret]
+## Solicitud de OTP [//certificates/{fp}/otp]
 Para poder firmar con sus certificados (de tipo OTP) los ususarios deben obtener su secreto de "one time password" para 
+
++ Parameters
+    + fp:1 (number,required) - Identificador único del certificado
 
 ### Solicitar OTP [GET]    
 
 + Attributes (object)
-    + dni (string, required) - User's unique identifier (xxx-x)
-    + fp (string, required) - Certificate's Fingerprint
-    + appId (string, required) - Application's unique identifier (claimant)
 
 + Request (application/json; charset=UTF-8)
 
@@ -97,7 +98,7 @@ Para poder firmar con sus certificados (de tipo OTP) los ususarios deben obtener
 
         Error interno del Servidor
         
-## Revocación de Certificado [/certificate/{fp}]
+## Revocación de Certificado [/certificates/{fp}]
 Revoca un certificado, eliminando sus claves privadas y lo deja sin uso en el sistema.
 
 + Parameters
