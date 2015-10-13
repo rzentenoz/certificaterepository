@@ -70,7 +70,7 @@ Los certificados una vez validados por el ministro de fé, deben ser confirmados
 
 
 
-## Solicitud de OTP [//certificates/{fp}/otp]
+## Solicitud de OTP [/certificates/{fp}/otp]
 Para poder firmar con sus certificados (de tipo OTP) los ususarios deben obtener su secreto de "one time password" para 
 
 + Parameters
@@ -83,6 +83,12 @@ Para poder firmar con sus certificados (de tipo OTP) los ususarios deben obtener
 + Response 200
     + Attributes (object)
         + secret (string) - Certificate's OTP secret
+        
+
+ + Body
+            {
+                    "secret":"OTP secret"
+            }
 
 + Response 409
 
