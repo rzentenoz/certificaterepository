@@ -5,6 +5,16 @@ HOST: https://repository.agilesigner.com:8443/Agile27
 
 API para banco de Firmas y generación de Certificados.
 
+## Authentication
+    La autenticación en esta API es del tipo Basic Authentication, por lo que la aplicación que consuma la API debe proporcionar su applicationID y su password.
+
++ Authentication Schemes
+    + basic (Generic Base)
+        + Headers
+            + Authentication: Basic abcd1234
+            
+
+
 ## Solicitud de Certificado [/certificates]
 Permite generar un certificado digital para una persona, retornando posteriormente un Base64 del X509
 
@@ -78,16 +88,15 @@ Para poder firmar con sus certificados (de tipo OTP) los ususarios deben obtener
 
 ### Solicitar OTP [GET]    
 
-+ Attributes (object)
-
-+ Response 200
++ Response 200 (application/json; charset=UTF-8)
     + Attributes (object)
         + secret (string) - Certificate's OTP secret
         
 
  + Body
+
             {
-                    "secret":"OTP secret"
+                "secret": "OTPSecret"
             }
 
 + Response 409
