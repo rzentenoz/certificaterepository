@@ -4,14 +4,6 @@ HOST: https://repository.agilesigner.com:8443/Agile27/admin
 # CertificateRepositoryAPI
 
 API para banco de Firmas y generación de Certificados.
-
-## Authentication
-    La autenticación en esta API es del tipo Basic Authentication, por lo que la aplicación que consuma la API debe proporcionar su applicationID y su password.
-
-+ Authentication Schemes
-    + basic (Generic Base)
-        + Headers
-            + Authentication: Basic abcd1234
             
 
 
@@ -96,7 +88,7 @@ Para poder firmar con sus certificados (de tipo OTP) los ususarios deben obtener
  + Body
 
             {
-                "secret": "OTPSecret"
+                "secret": "secretOTP"
             }
 
 + Response 409
