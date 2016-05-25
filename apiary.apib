@@ -55,12 +55,11 @@ Permite reemplazar un certificado digital para una persona, retornando posterior
 + Parameters
     + fp:1 (number,required) - Identificador único del certificado
 
-### Reemplazar Solicitud de Certificado [PUT]
+### Reemplazar Certificado [PUT]
 
 + Attributes (object)
     + Include User
     + Include CAinfo
-    + certificateType (string, required) - Certificate type
     + expirationYears (string, required) - Certificate's expiration in ISO 8601 format
     + purpose (string) - Certificate's purpose
 
@@ -77,7 +76,6 @@ Permite reemplazar un certificado digital para una persona, retornando posterior
                 "name": "TESTX",
                 "entityProfile": "test",
                 "certificateProfile": "SAI",
-                "certificateType": "OTP",
                 "expirationYears": "2016-01-15 13:13:13+00:00",    
                 "purpose": "Samples"
             }
