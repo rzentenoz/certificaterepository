@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: https://demo.agilesigner.com:8443/AgileLuna27/admin
+HOST: https://demo.agilesigner.com:8443/AgileLuna27
 
 # CertificateRepositoryAPI
 
@@ -7,7 +7,7 @@ API para banco de Firmas y generación de Certificados.
             
 
 
-## Solicitud de Certificado [/certificates]
+## Solicitud de Certificado [/admin/certificates]
 Permite generar un certificado digital para una persona, retornando posteriormente un Base64 del X509
 
 ### Generar Solicitud de Certificado [POST]
@@ -27,14 +27,12 @@ Permite generar un certificado digital para una persona, retornando posteriormen
                 "dni": "11111111-1",
                 "cargo": "NADA",
                 "organismo": "NADA",
-                "entidad" : "NADA",
                 "email": "example@agile.cl",
                 "name": "TESTX",
                 "entityProfile": "test",
                 "certificateProfile": "SAI",
                 "certificateType": "OTP",
-                "expirationYears": "2016-01-15 13:13:13+00:00",    
-                "purpose": "Samples"
+                "expirationYears": "2016-01-15 13:13:13+00:00"
             }
     
 
@@ -49,7 +47,7 @@ Permite generar un certificado digital para una persona, retornando posteriormen
             }
     
 
-## Reemplazo de Certificado [/certificates/{fp}]
+## Reemplazo de Certificado [/admin/certificates/{fp}]
 Permite reemplazar un certificado digital para una persona, retornando posteriormente un Base64 del X509
 
 + Parameters
@@ -71,13 +69,11 @@ Permite reemplazar un certificado digital para una persona, retornando posterior
                 "dni": "11111111-1",
                 "cargo": "NADA",
                 "organismo": "NADA",
-                "entidad" : "NADA",
                 "email": "example@agile.cl",
                 "name": "TESTX",
                 "entityProfile": "test",
                 "certificateProfile": "SAI",
-                "expirationYears": "2016-01-15 13:13:13+00:00",    
-                "purpose": "Samples"
+                "expirationYears": "2016-01-15 13:13:13+00:00"
             }
     
 
@@ -92,7 +88,7 @@ Permite reemplazar un certificado digital para una persona, retornando posterior
             }
 
 
-## Habilitación de Certificados [/certificates/{fp}/confirm]
+## Habilitación de Certificados [/admin/certificates/{fp}/confirm]
 Los certificados una vez validados por el ministro de fé, deben ser confirmados ante el banco de certificados para habilitar el uso de los mismos
 
 + Parameters
@@ -115,7 +111,7 @@ Los certificados una vez validados por el ministro de fé, deben ser confirmados
 
 
 
-## Solicitud de OTP [/certificates/{fp}/otp]
+## Solicitud de OTP [/admin/certificates/{fp}/otp]
 Para poder firmar con sus certificados (de tipo OTP) los ususarios deben obtener su secreto de "one time password" para 
 
 + Parameters
@@ -142,7 +138,7 @@ Para poder firmar con sus certificados (de tipo OTP) los ususarios deben obtener
 
         Error interno del Servidor
         
-## Revocación de Certificado [/certificates/{fp}{?reason}]
+## Revocación de Certificado [/admin/certificates/{fp}{?reason}]
 Revoca un certificado, eliminando sus claves privadas y lo deja sin uso en el sistema.
 
 + Parameters
@@ -164,7 +160,7 @@ Revoca un certificado, eliminando sus claves privadas y lo deja sin uso en el si
         Error interno del Servidor
         
 
-## Nueva Aplicación [/applications]
+## Nueva Aplicación [/admin/applications]
 Permite añadir una aplicación que interactuará con el Banco de firma
 
 ### Añadir Aplicación [POST]
@@ -192,7 +188,7 @@ Permite añadir una aplicación que interactuará con el Banco de firma
             }
             
 
-## Modificar Aplicación [/applications/{key}]
+## Modificar Aplicación [/admin/applications/{key}]
 Permite remover una aplicación y eliminará su interacción con el Banco de firma
 
 + Parameters
@@ -237,7 +233,7 @@ Permite remover una aplicación y eliminará su interacción con el Banco de fir
 
         La aplicación no existe
         
-## Ligar Certificado [/applications/{key}/certificates/{fp}]
+## Ligar Certificado [/admin/applications/{key}/certificates/{fp}]
 Permite ligar una aplicación con un certificado, la cual podrá realizar procesos de firma con el mismo.
 
 + Parameters
@@ -255,7 +251,7 @@ Permite ligar una aplicación con un certificado, la cual podrá realizar proces
         La aplicación o el certificado no existe
     
         
-## Ligar Certificados [/applications/{key}/certificates]
+## Ligar Certificados [/admin/applications/{key}/certificates]
 Permite ligar una aplicación con un certificado, la cual podrá realizar procesos de firma con el mismo.
 
 + Parameters
@@ -313,7 +309,7 @@ Permite ligar una aplicación con un certificado, la cual podrá realizar proces
 
         La aplicación no existe
 
-## TEMPORAL - Nueva Aplicación Proxy [/applications/proxy]
+## TEMPORAL - Nueva Aplicación Proxy [/firma/v1/app/register]
 Permite añadir una aplicación en proxy
 
 ### TEMPORAL - Nueva Aplicación Proxy [POST]
@@ -325,22 +321,148 @@ Permite añadir una aplicación en proxy
 + Request (application/json; charset=UTF-8)
 
             {
-                "name": "TEST",
-                "tokenKey": "tokenTest"
+                "name": "APP NAME",
+                "app_code": "api_token_key"
             }
     
 
 + Response 201 (application/json; charset=UTF-8)
     + Attributes (object)
-        + publicKey (string) - Application's public Key
+        + publicKey (string) - Application's public Key (PEM)
   
  + Body
 
             {
-                "publicKey": "pubkeytest"
+                "public_key": "public_key_pem"
             }
-        
+            
+            
+## Firma de Documento [/signer/signatures{?type}]
+Permite firmar un documento (PDF,XML o JSON) de un usuario con un certificado almacenado en el repositorio de Cetificados Digitales.
+
++ Parameters
+    + type:PDF (required,DocumentType) - Tipo de documento a firmar (PDF, XML o JSON)
+
+### Firmar Documento [POST]
+
++ Attributes (SignatureRequest)
+    + reason (optional,string) - Signature's description (only on PDF)
+    + location (optional,string) - Location of the signer (only on PDF)
+    + layout (optional,string) - XML representation for the positions of the signature (only on PDF)
+    + references (required,array) - XML object references (only on XML)
+
++ Request (application/json; charset=UTF-8)
+
+ + Body
+ 
+            {
+                "reason":"Firma en API de firma",
+                "location":"Valparaiso",
+                "layout":"<AgileSignerConfig></AgileSignerConfig>",
+                "doc": "PDF en base64",
+                "fp": "1234",
+                "otp": "567890"
+            }
+ 
+ + Schema
+
+            {
+                "type": "object",
+                "properties":{
+                    "doc": {
+                        "type": "string",
+                      "description": "Document in Base64 format"
+                    },
+                    "fp": {
+                      "type": "string",
+                      "description": "Certificate's finger print"
+                    },
+                    "otp": {
+                      "type": "string",
+                      "description": "One Time Password for the current certificate"
+                    }
+                },
+               "oneOf": [ {
+                  "type": "object",
+                  "properties": {
+                    "reason": {
+                      "type": "string",
+                      "description": "Signature's description"
+                    },
+                    "location": {
+                      "type": "string",
+                      "description": "Location of the signer"
+                    },
+                    "layout": {
+                      "type": "string",
+                      "description": "XML representation for the positions of the signature"
+                    }        
+                  },
+                  "required": [
+                    "layout","doc","fp","otp"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "references": {
+                      "type": "array",
+                      "description": "XML object references",
+                      "items":{
+                        "type": "string"
+                      }
+                    }
+                  },
+                   "required": [
+                    "doc","fp","otp","references"
+                  ] 
+                },
+                {
+                  "type": "object",
+                  "properties": {           
+                  },
+                   "required": [
+                    "doc","fp","otp"
+                  ] 
+                }
+              ],
+              "$schema": "http://json-schema.org/draft-04/schema#"
+            }
+
++ Response 200 (application/json; charset=UTF-8)
+
+ + Body
+
+            {
+                "base64":"base64 file"
+            }
+
++ Response 404 (application/json; charset=UTF-8)
+
+             Si el certificado o persona no existe o no está disponible
+            
++ Response 412 (application/json; charset=UTF-8)
+
+             Si el OTP no es válido
+            
 # Data Structures
+
+## Application (object)
++ appId (string, required) - Application's unique identifier
+
+## Document (object)
++ base64 (string) - Signed Document in base64 format
+
+## SignatureRequest (object)
++ doc (required,string) - Document in Base64 format
++ fp (string,required) - Certificate's finger print
++ otp (string, required) - One Time Password for the current certificate
+
+## DocumentType
+Types of document to sign
+PDF - PDF
+XML - XML
+JSON - JSON
 
 ## Certificate (object)
 + x509 (string) - Certificate's pem in Base64 format
@@ -350,7 +472,6 @@ Permite añadir una aplicación en proxy
 + dni (string, required) - User's unique identifier (xxx-x)
 + cargo (string) - User's position
 + organismo (string) - User's organism
-+ entidad (string) - User's organism unit
 + email (string, required) - User's email address    
 
 ## CAinfo (object)
